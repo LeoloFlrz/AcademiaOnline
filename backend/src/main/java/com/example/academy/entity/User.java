@@ -1,6 +1,9 @@
 package com.example.academy.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,17 +14,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
-
-    private String title;
-    private String description;
-    private int rating;
+    private String username;
+    private String password;
+    private String email;
 }
