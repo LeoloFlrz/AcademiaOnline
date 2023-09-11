@@ -14,7 +14,8 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/courses")
+@CrossOrigin("*")
 public class CourseController {
 
     @Autowired

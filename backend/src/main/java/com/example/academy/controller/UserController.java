@@ -10,9 +10,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
-@CrossOrigin("*")
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
