@@ -1,9 +1,13 @@
 <script setup>
-import TheWelcome from './components/TheWelcome.vue'
+import LandingView from './views/LandingView.vue';
 </script>
 
 <template>
-    <TheWelcome />
+    <LandingView />
+
+    <h1 class="text-3xl font-bold underline">
+      Hello world!
+    </h1>
 </template>
 
 <style scoped>
