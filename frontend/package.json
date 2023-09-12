@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.16",
+    "heroicons": "^2.0.18",
     "postcss-cli": "^10.1.0",
     "vue": "^3.3.4"
   },

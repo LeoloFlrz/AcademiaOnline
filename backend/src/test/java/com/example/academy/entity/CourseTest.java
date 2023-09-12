@@ -5,8 +5,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @SpringBootTest
 class CourseTest {
+
 
     public User testUser = new User(1L, "leolo", "admin", "leolo@leolo.com");
     public Course testCourse = new Course(1L, testUser, "prueba", "curso de prueba",2);

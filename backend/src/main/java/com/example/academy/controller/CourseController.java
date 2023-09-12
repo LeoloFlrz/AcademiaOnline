@@ -24,14 +24,14 @@ public class CourseController {
     @Autowired
     private UserService userService;
 
-    @PostMapping()
+   /* @PostMapping()
     public ResponseEntity<String> AddCourse(@RequestBody Course course) {
         User selectedUser = userService.getAllUser().stream().filter(user -> user.getId().equals(course.getUser().getId())).findFirst()
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID: "+course.getUser().getId()));
         course.setUser((selectedUser));
         courseService.createCourse(course);
         return ResponseEntity.ok("Course successfully added");
-    }
+    }*/
 
     @GetMapping
     public ResponseEntity<List<Course>> AllCourses() {
@@ -45,7 +45,7 @@ public class CourseController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id does not exist" + id));
     }
 
-    @PutMapping("/{id}")
+   /* @PutMapping("/{id}")
     public ResponseEntity<String> editCourse(@RequestBody Course course, @PathVariable Long id) {
         if (courseService.getCourseById(id).isPresent()) {
             User selectedUser = userService.getAllUser().stream().filter(user -> user.getId().equals(course.getUser().getId())).findFirst()
@@ -56,7 +56,7 @@ public class CourseController {
             return ResponseEntity.ok("Task Updated Successfully!");
         }
         return ResponseEntity.notFound().build();
-    }
+    }*/
 
     @DeleteMapping("/{id}/deleted")
     public ResponseEntity<String> deleteCourse(@PathVariable Long id) {
