@@ -1,4 +1,5 @@
 <script setup>
+import MainCourse from '../components/MainCourse.vue';
 import MainNavbar from '../components/MainNavbar.vue';
 import VideoContainer from '../components/VideoContainer.vue';
 
@@ -17,7 +18,7 @@ import VideoContainer from '../components/VideoContainer.vue';
 
     <section class="flex justify-center">
       <div class="coursesContainer bg-zinc-400 h-96 w-8/12 rounded-md">
-        
+        <MainCourse video-class="w-96 h-auto"/>
       </div>
     </section>
     

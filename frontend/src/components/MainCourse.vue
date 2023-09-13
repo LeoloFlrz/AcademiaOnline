@@ -1,9 +1,23 @@
 <script setup>
+// import { defineProps } from 'vue';
+
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  courseClass: {
+    type: String,
+    default: ''
+  },
+  videoClass: {
+    type: String,
+    default: ''
+  }
+  
+})
 </script>
 
 <template>
-  <div class="courseContainer">
-    <div class="videoContainer">
+  <div :class="courseClass">
+    <div :class="videoClass">
       <video src="../assets/RaicesConSonido.mkv"></video>
     </div>
 

@@ -33,7 +33,7 @@ public class CourseService {
     public void deleteCourse(Long id) {
         Optional<Course> course = courseRepository.findById(id);
         if (course.isEmpty()) {
-            System.out.println("Task doesn`t exist");
+            System.out.println("Course doesn`t exist");
         }
         courseRepository.deleteById(id);
     }
