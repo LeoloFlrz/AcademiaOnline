@@ -1,4 +1,6 @@
 <script setup>
+import ApiConnection from '../services/ApiConnection.js'
+import { onMounted, ref } from 'vue';
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   courseClass: {
@@ -10,6 +12,13 @@ const props = defineProps({
     default: ''
   }
   
+})
+
+const courses = ref()
+
+onMounted(async () => {
+  courses.value = await ApiConnection.getAllCourses()
+  console.log(courses.value);
 })
 </script>
 
