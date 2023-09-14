@@ -14,11 +14,40 @@ const props = defineProps({
   
 })
 
-const courses = ref()
+const userName = ref()
+const userId = ref()
+const users = ref([])
+const courses = ref([])
+const courseId = ref()
+const courseTitle = ref()
+const courseDescription = ref()
 
-onMounted(async () => {
-  courses.value = await ApiConnection.getAllCourses()
-  console.log(courses.value);
+const getUsers = async () => {
+  let response = await ApiConnection.getAllUsers()
+  users.value = response.data
+  console.log(users.value);
+  userId.value = users.value[0].id
+  console.log(userId.value);
+  userName.value = users.value[0].username
+  console.log(userName.value);
+}
+
+
+  const getCourses = async () => {
+    let response = await ApiConnection.getAllCourses();
+    courses.value = response.data
+    courseTitle.value = courses.value[0].title
+    courseId.value = courses.value[0].id
+    courseDescription.value = courses.value[0].description
+  }
+  
+  onMounted(async () => {
+  // const response = await ApiConnection.getAllUsers()
+  // await getCourseById(1)
+  // courseTitle.value = response.data[0].title
+  // console.log(courseTitle.value);
+  getCourses()
+  getUsers()
 })
 </script>
 

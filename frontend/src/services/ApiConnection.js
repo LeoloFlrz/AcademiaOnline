@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const urlCourse = "http://localhost:8080/Courses"
+const urlCourse = "http://localhost:8080/courses"
 const urlUser = "http://localhost:8080/users"
 
 
