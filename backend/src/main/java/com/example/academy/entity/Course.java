@@ -18,7 +18,7 @@ public class Course {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private User user;
 
     private String title;

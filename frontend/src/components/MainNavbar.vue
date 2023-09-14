@@ -2,7 +2,7 @@
 
 <template>
   <header>
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+    <nav class="bg-gray-900 border-gray-200 dark:bg-gray-900">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center">
           <img src="../assets/logoRonBlanco.png" class="h-20 w-auto mr-6" alt="Academia Ron Logo" />
