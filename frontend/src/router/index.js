@@ -1,24 +1,20 @@
-import { createRouter, createWebHistory } from "vue-router";
-import AddCourseView from '../views/AddCourseView';
-import LandingView from '../views/LandingView'
-
-
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-        path:"/",
-        name: "LandingPage",
-        component: LandingView
+      path: '/',
+      name: 'home',
+      component: HomeView
     },
     {
-      path: "/add",
-      name: "AddCourse",
-      component: AddCourseView
+      path: '/add',
+      name: 'AddCourse',
+      component: () => import('../views/AddCourseView.vue')
     }
-    
-  ],
-});
+  ]
+})
 
-export default router;
+export default router
