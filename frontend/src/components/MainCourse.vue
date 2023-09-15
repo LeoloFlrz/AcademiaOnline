@@ -33,10 +33,10 @@ const getUsers = async () => {
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses()
   courses.value = response.data
-  courseTitle.value = courses.value[0].title
-  courseId.value = courses.value[0].id
-  courseDescription.value = courses.value[0].description
-  courseRating.value = courses.value[0].rating
+  courseTitle.value = courses.value[1].title
+  courseId.value = courses.value[1].id
+  courseDescription.value = courses.value[1].description
+  courseRating.value = courses.value[1].rating
 }
 
 onMounted(async () => {
@@ -46,17 +46,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex justify-around bg-indigo-300 rounded p-4 items-center" :class="courseClass">
+  <div class="flex justify-around bg-blue-900 rounded p-4 items-center" :class="courseClass">
     <div :class="videoClass">
       <video class="rounded" src="../assets/RaicesConSonido.mkv" controls></video>
     </div>
 
     <div class="titleDescriptionContainer flex flex-col items-center">
-      <div class="courseTitle rounded bg-gray-300 w-16 h-auto text-center font-semibold ">
+      <div class="courseTitle rounded text-white w-auto h-auto  font-semibold ">
         {{ courseTitle }}
       </div>
 
-      <div class="courseDescription rounded bg-gray-300 w-auto h-auto text-center mt-8 p-2">{{ courseDescription }}</div>
+      <div class="courseDescription text-white rounded w-auto h-auto text-center mt-8 p-2">{{ courseDescription }}</div>
     </div>
 
     <div class="flex flex-col">
@@ -65,7 +65,7 @@ onMounted(async () => {
       </div>
       
       <div class="ratingContainer">
-        <div class="courseRating">Rating: {{ courseRating }}</div>
+        <div class="courseRating text-white">Rating: {{ courseRating }}</div>
 
         <div class="flex items-center space-x-1">
           <svg

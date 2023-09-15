@@ -4,7 +4,7 @@ import MainNavbar from '../components/MainNavbar.vue';
 
 <template>
     <div>
-        <MainNavbar >
+        <MainNavbar />
     </div>
 </template>
 

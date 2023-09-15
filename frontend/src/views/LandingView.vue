@@ -33,14 +33,14 @@ onBeforeMount(() => {
 
   <main>
     <div class="videoContainer flex flex-col items-center">
-      <VideoContainer class="w-5/12 h-8/12 mb-10"/>
+      <VideoContainer class="w-5/12 h-4/12 mb-10"/>
       <p class="flex justify-center w-6/12 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aliquid voluptate dicta quaerat ullam soluta adipisci inventore ducimus rerum, a assumenda perspiciatis nobis laborum, autem eaque amet reprehenderit illum eos?</p>
     </div>
     <div class="buttonContainer flex justify-end mr-20 pt-5">
         <MainButton button-title="Añadir Curso" href="/add"/>
     </div>
     <section class="flex flex-row justify-center items-center">
-      <div class="coursesContainer bg-zinc-400 h-auto w-11/12 mt-10 rounded-md">
+      <div class="coursesContainer bg-blue-950 h-auto w-11/12 mt-10 rounded-md">
         <MainCourse v-for="(courses, index) in courses" :key="index" video-class="w-4/12 h-auto" class="m-10"/>
       </div>
     </section>
