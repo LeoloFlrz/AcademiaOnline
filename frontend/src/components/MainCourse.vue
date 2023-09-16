@@ -1,7 +1,7 @@
 <script setup>
 import ApiConnection from '../services/ApiConnection.js'
 import { onMounted, ref } from 'vue'
-import MainButton from './MainButton.vue'
+import AddCourseButton from './AddCourseButton.vue';
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   courseClass: {
@@ -61,7 +61,7 @@ onMounted(async () => {
 
     <div class="flex flex-col">
       <div class="inscribeButton">
-        <MainButton button-title="Inscríbete" class="mb-5"/>
+        <AddCourseButton button-title="Inscríbete" class="mb-5"/>
       </div>
       
       <div class="ratingContainer">

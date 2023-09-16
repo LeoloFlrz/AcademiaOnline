@@ -1,21 +1,14 @@
 <script setup>
-import MainNavbar from '../components/MainNavbar.vue';
-
-const props = defineProps({
-    showModal: {
-        type: Boolean,
-        default: true
+const props = defineProps( {
+    showModal:{
+        type: Boolean
     }
 })
 
 </script>
 
 <template>
-    <div>
-        <MainNavbar class="text-gray-700"/>
-    </div>
-
-    <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50">
+    <div  class="fixed inset-0 flex items-center justify-center z-50">
       <div class="modal-overlay absolute inset-0 bg-gray-500 opacity-75"></div>
 
       <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">

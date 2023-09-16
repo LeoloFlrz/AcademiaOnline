@@ -1,10 +1,18 @@
 <script setup>
-import MainButton from '../components/MainButton.vue';
 import MainCourse from '../components/MainCourse.vue';
 import MainNavbar from '../components/MainNavbar.vue';
 import VideoContainer from '../components/VideoContainer.vue';
 import { ref, onBeforeMount } from 'vue'
 import ApiConnection from '../services/ApiConnection';
+import AddCourseButton from '../components/AddCourseButton.vue';
+import AddCourseModal from '../components/AddCourseModal.vue';
+
+const props = defineProps({
+  showModal: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const courses = ref([])
 const courseId = ref()
@@ -20,6 +28,7 @@ const getCourses = async () => {
   courseDescription.value = courses.value[0].description
   courseRating.value = courses.value[0].rating
 }
+
 
 onBeforeMount(() => {
   getCourses()
@@ -37,7 +46,8 @@ onBeforeMount(() => {
       <p class="flex text-white justify-center w-6/12 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aliquid voluptate dicta quaerat ullam soluta adipisci inventore ducimus rerum, a assumenda perspiciatis nobis laborum, autem eaque amet reprehenderit illum eos?</p>
     </div>
     <div class="buttonContainer flex justify-end mr-20 pt-5">
-        <MainButton button-title="Añadir Curso" />
+        <AddCourseButton button-title="Añadir Curso" @click="showModal = true"/>
+        <AddCourseModal v-if="showModal"/>
     </div>
     <section class="flex flex-row justify-center items-center">
       <div class="coursesContainer bg-blue-950 h-auto w-11/12 mt-10 rounded-md">
