@@ -47,7 +47,35 @@ onBeforeMount(() => {
     </div>
     <div class="buttonContainer flex justify-end mr-20 pt-5">
         <AddCourseButton button-title="Añadir Curso" @click="showModal = true"/>
-        <AddCourseModal v-if="showModal"/>
+        <!-- <AddCourseModal v-if="showModal"/> -->
+        <div v-if="showModal" class="fixed inset-0 flex items-center justify-center z-50">
+      <div v-if="showModal" class="modal-overlay absolute inset-0 bg-gray-500 opacity-75"></div>
+
+      <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <div class="modal-content py-4 text-left px-6">
+          <!-- Título del modal -->
+          <h3 class="text-2xl font-semibold">Agregar Curso</h3>
+
+          <!-- Contenido del modal -->
+          <!-- Aquí puedes agregar tus campos de entrada para la información del curso -->
+          <!-- Por ejemplo: -->
+          <div class="mt-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="cursoNombre">Nombre del Curso</label>
+            <input v-model="nombreCurso" type="text" id="cursoNombre" class="w-full border rounded-lg px-3 py-2" />
+          </div>
+
+          <!-- Botones del modal -->
+          <div class="mt-6 text-right">
+            <button @click="showModal = false" class="text-gray-600 hover:text-gray-900 mr-2">
+              Cancelar
+            </button>
+            <button @click="agregarCurso" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
     <section class="flex flex-row justify-center items-center">
       <div class="coursesContainer bg-blue-950 h-auto w-11/12 mt-10 rounded-md">
