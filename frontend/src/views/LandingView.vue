@@ -14,11 +14,17 @@ const props = defineProps({
   }
 })
 
+
 const courses = ref([])
 const courseId = ref()
 const courseTitle = ref()
 const courseDescription = ref()
 const courseRating = ref()
+
+const course = ref({
+  title: '',
+  description: ''
+})
 
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses()
@@ -29,6 +35,20 @@ const getCourses = async () => {
   courseRating.value = courses.value[0].rating
 }
 
+const addCourse = async () => {
+  const newCourse = {
+    ...course.value,
+  }
+    try {
+      ApiConnection.addCourse(newCourse)
+      alert("Curso añadido correctamente")
+      router.push('courses')
+    } catch (error) {
+     return alert("No se añadió el curso: " + error.message)
+    }
+    
+
+}
 
 onBeforeMount(() => {
   getCourses()
@@ -53,23 +73,20 @@ onBeforeMount(() => {
 
       <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
         <div class="modal-content py-4 text-left px-6">
-          <!-- Título del modal -->
           <h3 class="text-2xl font-semibold">Agregar Curso</h3>
-
-          <!-- Contenido del modal -->
-          <!-- Aquí puedes agregar tus campos de entrada para la información del curso -->
-          <!-- Por ejemplo: -->
           <div class="mt-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="cursoNombre">Nombre del Curso</label>
-            <input v-model="nombreCurso" type="text" id="cursoNombre" class="w-full border rounded-lg px-3 py-2" />
+            <input v-model="course.title" type="text" id="cursoNombre" class="w-full border rounded-lg px-3 py-2" />
           </div>
-
-          <!-- Botones del modal -->
+          <div class="mt-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="cursoNombre">Descripción</label>
+            <input v-model="course.description" type="text" id="cursoNombre" class="w-full border rounded-lg px-3 py-2" />
+          </div>
           <div class="mt-6 text-right">
             <button @click="showModal = false" class="text-gray-600 hover:text-gray-900 mr-2">
               Cancelar
             </button>
-            <button @click="agregarCurso" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button @click="addCourse, showModal = false" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               Guardar
             </button>
           </div>
