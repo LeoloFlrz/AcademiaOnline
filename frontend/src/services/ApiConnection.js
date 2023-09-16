@@ -34,7 +34,7 @@ class ApiConnection{
 
     async addCourse(course) {
         try {
-            let response = await axios.post(course)
+            let response = await axios.post(urlCourse, course)
             return response
         } catch (error) {
             return (error.message)

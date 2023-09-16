@@ -2,6 +2,7 @@
 import ApiConnection from '../services/ApiConnection.js'
 import { onMounted, ref } from 'vue'
 import AddCourseButton from './AddCourseButton.vue';
+import DeleteButton from './DeleteButton.vue'
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   courseClass: {
@@ -9,6 +10,10 @@ const props = defineProps({
     default: ''
   },
   videoClass: {
+    type: String,
+    default: ''
+  },
+  deleteButton: {
     type: String,
     default: ''
   }
@@ -39,6 +44,11 @@ const getCourses = async () => {
   courseRating.value = courses.value[1].rating
 }
 
+const deleteCourse = async (courseId) => {
+  let response = await deleteCourse(courseId);
+  
+}
+
 onMounted(async () => {
   getCourses()
   getUsers()
@@ -62,6 +72,7 @@ onMounted(async () => {
     <div class="flex flex-col">
       <div class="inscribeButton">
         <AddCourseButton button-title="Inscríbete" class="mb-5"/>
+        <DeleteButton @Click="deleteCourse(courseId)" :class="deleteButton" button-title="Borrar"/>
       </div>
       
       <div class="ratingContainer">

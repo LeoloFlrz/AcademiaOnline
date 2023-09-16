@@ -23,14 +23,31 @@ public class CourseController {
     @Autowired
     private UserService userService;
 
-    @PostMapping()
+    //@PostMapping
+    //public ResponseEntity<String> AddCourse(@RequestBody Course course) {
+    //    User selectedUser = userService.getAllUser().stream().filter(user -> user.getId().equals(course.getUser().getId())).findFirst()
+    //            .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID: "+course.getUser().getId()));
+    //    course.setUser((selectedUser));
+    //    courseService.createCourse(course);
+    //    return ResponseEntity.ok("Course successfully added");
+    //}
+
+    @PostMapping
     public ResponseEntity<String> AddCourse(@RequestBody Course course) {
-        User selectedUser = userService.getAllUser().stream().filter(user -> user.getId().equals(course.getUser().getId())).findFirst()
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID: "+course.getUser().getId()));
-        course.setUser((selectedUser));
+        if (course.getUser() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is required for adding a course.");
+        }
+
+        User selectedUser = userService.getAllUser().stream()
+                .filter(user -> user.getId().equals(course.getUser().getId()))
+                .findFirst()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID: " + course.getUser().getId()));
+
+        course.setUser(selectedUser);
         courseService.createCourse(course);
         return ResponseEntity.ok("Course successfully added");
     }
+
 
     @GetMapping
     public ResponseEntity<List<Course>> AllCourses() {

@@ -13,11 +13,25 @@ const courseRating = ref()
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses()
   courses.value = response.data
-  courseTitle.value = courses.value[index-1].title
-  courseId.value = courses.value[index-1].id
-  courseDescription.value = courses.value[index-1].description
-  courseRating.value = courses.value[index-1].rating
+  courseTitle.value = courses.value[1].title
+  courseId.value = courses.value[1].id
+  courseDescription.value = courses.value[1].description
+  courseRating.value = courses.value[1].rating
+  return response
 }
+
+// const getCourses = async () => {
+//   let response = await ApiConnection.getAllCourses()
+//   for( const i = 0 ; index<8; i++ ){
+//     courseId.value = i
+//     return i, console.log(i);
+//   }
+//   courses.value = response.data
+//   courseTitle.value = courses.value[i].title
+//   courseId.value = courses.value[1].id
+//   courseDescription.value = courses.value[i].description
+//   courseRating.value = courses.value[i].rating
+// }
 
 onBeforeMount(() => {
     getCourses()
