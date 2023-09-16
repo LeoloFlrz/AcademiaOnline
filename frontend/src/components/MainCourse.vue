@@ -16,7 +16,10 @@ const props = defineProps({
   deleteButton: {
     type: String,
     default: ''
-  }
+  },
+  title: String,
+  description: String,
+  rating: Number
 })
 
 const userName = ref()
@@ -38,15 +41,11 @@ const getUsers = async () => {
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses()
   courses.value = response.data
-  courseTitle.value = courses.value[1].title
-  courseId.value = courses.value[1].id
-  courseDescription.value = courses.value[1].description
-  courseRating.value = courses.value[1].rating
 }
 
 const deleteCourse = async (courseId) => {
   let response = await deleteCourse(courseId);
-  
+
 }
 
 onMounted(async () => {
@@ -63,10 +62,10 @@ onMounted(async () => {
 
     <div class="titleDescriptionContainer flex flex-col items-center">
       <div class="courseTitle rounded text-white w-auto h-auto  font-semibold ">
-        {{ courseTitle }}
+        {{ props.title }}
       </div>
 
-      <div class="courseDescription text-white rounded w-auto h-auto text-center mt-8 p-2">{{ courseDescription }}</div>
+      <div class="courseDescription text-white rounded w-auto h-auto text-center mt-8 p-2">{{ props.description }}</div>
     </div>
 
     <div class="flex flex-col">
@@ -76,7 +75,7 @@ onMounted(async () => {
       </div>
       
       <div class="ratingContainer">
-        <div class="courseRating text-white">Rating: {{ courseRating }}</div>
+        <div class="courseRating text-white">Rating: {{ props.rating }}</div>
 
         <div class="flex items-center space-x-1">
           <svg
