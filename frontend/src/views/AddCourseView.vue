@@ -4,7 +4,7 @@ import MainNavbar from '../components/MainNavbar.vue';
 
 <template>
     <div>
-        <MainNavbar />
+        <MainNavbar class="text-gray-700"/>
     </div>
 </template>
 

@@ -1,11 +1,12 @@
 <script setup>
-import LandingView from './views/LandingView.vue';
 </script>
 
 <template>
-    <LandingView />
+    <div id="app">
+       <router-view></router-view> 
+    </div>
+    
 </template>
 
 <style scoped>
-
 </style>

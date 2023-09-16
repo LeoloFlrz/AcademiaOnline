@@ -6,7 +6,6 @@ import com.example.academy.service.CourseService;
 import com.example.academy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -53,14 +52,13 @@ public class CourseController {
             course.setUser((selectedUser));
             courseService.updateCourse(course);
 
-            return ResponseEntity.ok("Task Updated Successfully!");
+            return ResponseEntity.ok("Course Updated Successfully!");
         }
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
 
         try {
             courseService.deleteCourse(id);

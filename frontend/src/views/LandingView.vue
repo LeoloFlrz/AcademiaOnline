@@ -31,13 +31,13 @@ onBeforeMount(() => {
     <MainNavbar />
   </header>
 
-  <main>
+  <main id="main">
     <div class="videoContainer flex flex-col items-center">
       <VideoContainer class="w-5/12 h-4/12 mb-10"/>
-      <p class="flex justify-center w-6/12 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aliquid voluptate dicta quaerat ullam soluta adipisci inventore ducimus rerum, a assumenda perspiciatis nobis laborum, autem eaque amet reprehenderit illum eos?</p>
+      <p class="flex text-white justify-center w-6/12 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis aliquid voluptate dicta quaerat ullam soluta adipisci inventore ducimus rerum, a assumenda perspiciatis nobis laborum, autem eaque amet reprehenderit illum eos?</p>
     </div>
     <div class="buttonContainer flex justify-end mr-20 pt-5">
-        <MainButton button-title="Añadir Curso" href="/add"/>
+        <MainButton button-title="Añadir Curso" />
     </div>
     <section class="flex flex-row justify-center items-center">
       <div class="coursesContainer bg-blue-950 h-auto w-11/12 mt-10 rounded-md">
@@ -50,4 +50,9 @@ onBeforeMount(() => {
 </template>
 
 <style scoped>
+  #main{ 
+    background-image: url("../assets/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; 
+  }
 </style>
