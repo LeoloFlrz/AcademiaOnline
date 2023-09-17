@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/courses")
@@ -61,7 +62,7 @@ public class CourseController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id does not exist" + id));
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/update/{id}")
     public ResponseEntity<String> editCourse(@RequestBody Course course, @PathVariable Long id) {
         if (courseService.getCourseById(id).isPresent()) {
             User selectedUser = userService.getAllUser().stream().filter(user -> user.getId().equals(course.getUser().getId())).findFirst()
@@ -72,8 +73,25 @@ public class CourseController {
             return ResponseEntity.ok("Course Updated Successfully!");
         }
         return ResponseEntity.notFound().build();
-    }
+    }*/
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> editCourse(@RequestBody Course updatedCourse, @PathVariable Long id) {
+        Optional<Course> existingCourseOptional = courseService.getCourseById(id);
+
+        if (existingCourseOptional.isPresent()) {
+            Course existingCourse = existingCourseOptional.get();
+
+            existingCourse.setTitle(updatedCourse.getTitle());
+            existingCourse.setDescription(updatedCourse.getDescription());
+            existingCourse.setRating(updatedCourse.getRating());
+
+            courseService.updateCourse(existingCourse);
+
+            return ResponseEntity.ok("Course Updated Successfully!");
+        }
+        return ResponseEntity.notFound().build();
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCourse(@PathVariable Long id) {
 

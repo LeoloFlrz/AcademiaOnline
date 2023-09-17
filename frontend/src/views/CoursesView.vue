@@ -4,9 +4,11 @@ import MainNavbar from "../components/MainNavbar.vue";
 import MainFooter from "../components/MainFooter.vue";
 import ApiConnection from "../services/ApiConnection.js";
 import { ref, onBeforeMount } from "vue";
+import { useRoute } from "vue-router";
 import DeleteButton from "../components/DeleteButton.vue";
 
 const courses = ref([]);
+const router = useRoute()
 
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses();
@@ -22,6 +24,7 @@ const deleteCourseById = async (id) => {
         alert("Cannot delete the course")
     }
 }
+
 
 onBeforeMount(() => {
   getCourses();
@@ -51,11 +54,14 @@ onBeforeMount(() => {
             <td class="p-3 px-5">{{ course.rating }}</td>
             <td class="p-3 px-5 flex justify-end">
               <div class="buttonsContainer">
-                <button
+                <a
+                  type="button"
+                  :href='`/update/${course.id}`'
+                  :courseId="course.id"
                   class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                 >
                   Editar
-                </button>
+              </a>
                 <button
                     
                   @click="deleteCourseById(course.id)"
