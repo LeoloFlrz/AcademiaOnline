@@ -1,55 +1,81 @@
 <script setup>
-import MainCourse from '../components/MainCourse.vue';
-import MainNavbar from '../components/MainNavbar.vue';
-import ApiConnection from '../services/ApiConnection.js';
-import { ref, onBeforeMount } from 'vue'
- 
-const courses = ref([])
+import MainCourse from "../components/MainCourse.vue";
+import MainNavbar from "../components/MainNavbar.vue";
+import MainFooter from '../components/MainFooter.vue'
+import ApiConnection from "../services/ApiConnection.js";
+import { ref, onBeforeMount } from "vue";
 
-// const getCourses = async () => {
-//   let response = await ApiConnection.getAllCourses()
-//   courses.value = response.data
-//   courseTitle.value = courses.value[1].title
-//   courseId.value = courses.value[1].id
-//   courseDescription.value = courses.value[1].description
-//   courseRating.value = courses.value[1].rating
-//   return response
-// }
+const courses = ref([]);
 
 const getCourses = async () => {
-  let response = await ApiConnection.getAllCourses()
+  let response = await ApiConnection.getAllCourses();
   console.log(response.data);
-  courses.value = response.data
+  courses.value = response.data;
   console.log(courses.value);
-}
-
-
+};
 
 onBeforeMount(() => {
-    getCourses()
-})
+  getCourses();
+});
 </script>
 
-<template  >
-    <body id="main">
-        <header>
-        <MainNavbar />
+<template>
+  <body id="main">
+    <header>
+      <MainNavbar />
     </header>
 
-    <div >
+    <!-- <div >
         <div v-for="course in courses" :key="course.id">       
             <MainCourse :title="course.title" :description="course.description" :rating="course.rating" video-class="w-4/12 h-auto" class="m-10 bg-blue-950 mt-10"/>
         </div>
-    </div>
-    </body>
-    
+    </div> -->
+    <main>
+      <table class="table table-hover m-10 bg-blue-950 mt-10">
+        <thead>
+          <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Puntuación</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="course in courses" :key="course.id">
+            <!-- <MainCourse /> -->
+            <th scope="row">{{ course.title }}</th>
+            <td>{{ course.description }}</td>
+            <td>{{ course.dueDate }}</td>
+            <td>
+              <div class="button-group">
+                <a class="btn btn-primary" :href="`/update/${course.id}`"
+                  >Edit</a
+                >
+                <button
+                  class="btn btn-danger mx-2"
+                  @click="deleteTask(course.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+        <MainFooter />
+    </footer>
+</body>
 </template>
 
 <style scoped>
-#main {
-    background-image: url('../assets/bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
+body {
+    min-height: 100vh;
+  background-image: url("../assets/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 </style>

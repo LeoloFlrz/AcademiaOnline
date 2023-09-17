@@ -5,6 +5,7 @@ import VideoContainer from "../components/VideoContainer.vue";
 import { ref, onBeforeMount } from "vue";
 import ApiConnection from "../services/ApiConnection";
 import AddCourseButton from "../components/AddCourseButton.vue";
+import MainFooter from "../components/MainFooter.vue";
 
 const props = defineProps({
   showModal: {
@@ -63,7 +64,8 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <header>
+  <body>
+    <header>
     <MainNavbar />
   </header>
 
@@ -166,10 +168,17 @@ onBeforeMount(() => {
       </div>
     </section>
   </main>
+
+  <footer>
+    <MainFooter />
+  </footer>
+  </body>
+  
 </template>
 
 <style scoped>
-#main {
+body {
+  min-width: 100vh;
   background-image: url("../assets/bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
