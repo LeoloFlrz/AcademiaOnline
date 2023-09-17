@@ -43,7 +43,7 @@ class ApiConnection{
 
     async updateCourse(id, course) {
         try {
-            let response = await axios.put(`${urlCourse}/${id}`, course)
+            let response = await axios.put(`${urlCourse}/update/${id}`, course)
             return response
         } catch (error) {
             return (error.message)

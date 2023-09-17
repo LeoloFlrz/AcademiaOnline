@@ -62,29 +62,16 @@ public class CourseController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id does not exist" + id));
     }
 
-    /*@PutMapping("/update/{id}")
-    public ResponseEntity<String> editCourse(@RequestBody Course course, @PathVariable Long id) {
-        if (courseService.getCourseById(id).isPresent()) {
-            User selectedUser = userService.getAllUser().stream().filter(user -> user.getId().equals(course.getUser().getId())).findFirst()
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with ID: " + course.getUser().getId()));
-            course.setUser((selectedUser));
-            courseService.updateCourse(course);
-
-            return ResponseEntity.ok("Course Updated Successfully!");
-        }
-        return ResponseEntity.notFound().build();
-    }*/
-
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> editCourse(@RequestBody Course updatedCourse, @PathVariable Long id) {
+    public ResponseEntity<String> editCourse(@RequestBody Course course, @PathVariable Long id) {
         Optional<Course> existingCourseOptional = courseService.getCourseById(id);
 
         if (existingCourseOptional.isPresent()) {
             Course existingCourse = existingCourseOptional.get();
 
-            existingCourse.setTitle(updatedCourse.getTitle());
-            existingCourse.setDescription(updatedCourse.getDescription());
-            existingCourse.setRating(updatedCourse.getRating());
+            existingCourse.setTitle(course.getTitle());
+            existingCourse.setDescription(course.getDescription());
+            existingCourse.setRating(course.getRating());
 
             courseService.updateCourse(existingCourse);
 
