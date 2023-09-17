@@ -20,7 +20,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <body id="main">
+  <body id="main" class="min-h-screen flex flex-col">
     <header>
       <MainNavbar />
     </header>
@@ -30,7 +30,7 @@ onBeforeMount(() => {
             <MainCourse :title="course.title" :description="course.description" :rating="course.rating" video-class="w-4/12 h-auto" class="m-10 bg-blue-950 mt-10"/>
         </div>
     </div> -->
-    <main>
+    <main class="flex-grow">
       <table class="table table-hover m-10 bg-blue-950 mt-10">
         <thead>
           <tr>
@@ -64,7 +64,7 @@ onBeforeMount(() => {
       </table>
     </main>
 
-    <footer>
+    <footer  class="mt-auto">
         <MainFooter />
     </footer>
 </body>
