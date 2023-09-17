@@ -34,6 +34,7 @@ const newCourse = ref({
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses();
   courses.value = response.data;
+  console.log(courses.value);
   courseTitle.value = courses.value[0].title;
   courseId.value = courses.value[0].id;
   courseDescription.value = courses.value[0].description;
@@ -154,8 +155,11 @@ onBeforeMount(() => {
       <div class="coursesContainer bg-blue-950 h-auto w-11/12 mt-10 rounded-md">
         <MainCourse
           delete-button="hidden"
-          v-for="(courses, index) in courses"
-          :key="index"
+          :title="course.title"
+          :description="course.description"
+          :rating="course.rating"
+          v-for="course in courses"
+          :key="course.id"
           video-class="w-4/12 h-auto"
           class="m-10"
         />
