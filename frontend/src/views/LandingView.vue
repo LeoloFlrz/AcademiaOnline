@@ -20,43 +20,36 @@ const courseTitle = ref();
 const courseDescription = ref();
 const courseRating = ref();
 
-const newCourse = ref({
-  "user": {
-    "id": 6,
-    "username": "leolo",
-    "password": "admin",
-    "email": "leolo@leolo.com",
+const course = ref({
+  user: {
+    id: 6,
+    username: "leolo",
+    password: "admin",
+    email: "leolo@leolo.com",
   },
-  "title": "",
-  "description": "",
-  "rating": 1,
+  title: "",
+  description: "",
+  rating: '',
 });
 
 const getCourses = async () => {
   let response = await ApiConnection.getAllCourses();
   courses.value = response.data;
   console.log(courses.value);
-  courseTitle.value = courses.value[0].title;
-  courseId.value = courses.value[0].id;
-  courseDescription.value = courses.value[0].description;
-  courseRating.value = courses.value[0].rating;
 };
 
 const addCourse = async () => {
-  try {
-    const response = await ApiConnection.addCourse(newCourse);
-    if (response.status === 201) {
-      alert("Curso añadido correctamente");
-      showModal.value = false;
-      console.log(newCourse);
-    } else {
-      alert("Error al añadir el curso");
-      console.log(newCourse);
-    }
-  } catch (error) {
-    return alert("No se añadió el curso: " + error.message);
+  const newCourse = {
+    ...course.value
   }
-};
+  try {
+    ApiConnection.addCourse(newCourse)
+    alert("Course successfully added!")
+  } catch (error) {
+    return alert("Not able to add course: " + error.message)
+  }
+}
+
 
 onBeforeMount(() => {
   getCourses();
@@ -103,7 +96,7 @@ onBeforeMount(() => {
                 >Nombre del Curso</label
               >
               <input
-                v-model="newCourse.title"
+                v-model="course.title"
                 type="text"
                 id="cursoNombre"
                 class="w-full border rounded-lg px-3 py-2"
@@ -116,7 +109,7 @@ onBeforeMount(() => {
                 >Descripción</label
               >
               <input
-                v-model="newCourse.description"
+                v-model="course.description"
                 type="text"
                 id="cursoNombre"
                 class="w-full border rounded-lg px-3 py-2"
@@ -129,7 +122,7 @@ onBeforeMount(() => {
                 >Puntuación</label
               >
               <input
-                v-model="newCourse.rating"
+                v-model="course.rating"
                 type="number"
                 id="cursoNombre"
                 class="w-full border rounded-lg px-3 py-2"
@@ -143,7 +136,7 @@ onBeforeMount(() => {
                 Cancelar
               </button>
               <button
-                @click="addCourse()"
+                @click="addCourse(), showModal = false"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               >
                 Guardar
